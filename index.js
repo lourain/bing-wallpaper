@@ -3,6 +3,11 @@ const https = require('https')
 const fs = require('fs')
 const path = require('path')
 
+const imgPath = path.join(__dirname, './img')
+
+fs.exists(imgPath,exists=>{
+    !exists && fs.mkdirSync(imgPath)
+})
 //获取bing图片
 let bing = {
     getImgUrl: function () {
@@ -30,7 +35,6 @@ let bing = {
         let images = json.images[0]
         let imgUrl = `https://cn.bing.com${images.url}`
         let title = images.enddate
-        const imgPath = path.join(__dirname, './img')
         const writeStream = fs.createWriteStream(path.join(imgPath, `${title}.jpg`))
         https.get(imgUrl, res => {
             res.setEncoding = 'binary'
@@ -48,7 +52,7 @@ let bing = {
 }
 
 let laterCtrl = {
-    basic:{ h: [00], m: [01] },
+    basic:{ h: [16], m: [52] },
     composite:function(){
         return [Object.assign({},this.basic)]
     },
