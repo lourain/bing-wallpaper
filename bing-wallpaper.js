@@ -52,7 +52,7 @@ let bing = {
 }
 
 let laterCtrl = {
-    basic:{ h: [16], m: [52] },
+    basic:{ h: [00], m: [01] },
     composite:function(){
         return [Object.assign({},this.basic)]
     },
